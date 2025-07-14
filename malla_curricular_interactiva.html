@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malla Curricular Interactiva</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Malla Curricular Interactiva</h1>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="malla">Malla</button>
+    <button class="tab-btn" data-tab="calculadora">Calculadora de Promedios</button>
+    <button class="tab-btn" data-tab="calendario">Calendario</button>
+  </div>
+  <button id="toggle-theme">Modo Claro/Oscuro</button>
+  <div id="progress-bar-container">
+    <div id="progress-bar"></div>
+    <span id="progress-text"></span>
+  </div>
+  <div id="malla-container"></div>
+  <div id="calculadora-container" style="display:none;">
+    <!-- Calculadora de promedios -->
+    <div class="calc-box">
+      <h2>Calculadora de Promedios</h2>
+      <form id="calc-form">
+        <div id="eval-list"></div>
+        <button type="button" id="add-eval">Agregar Evaluación</button>
+      </form>
+      <div class="calc-result">
+        <strong>Promedio:</strong> <span id="calc-promedio">-</span>
+      </div>
+    </div>
+  </div>
+  <!-- Calendario de evaluaciones -->
+  <div id="calendario-container" style="display:none;">
+    <div id="calendar-header">
+      <h2>Calendario de Evaluaciones</h2>
+      <div id="calendar-nav">
+        <button id="prev-month">◄</button>
+        <select id="month-select"></select>
+        <select id="year-select"></select>
+        <button id="next-month">►</button>
+      </div>
+    </div>
+    <div id="calendar-grid"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

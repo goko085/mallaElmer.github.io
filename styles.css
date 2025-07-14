@@ -1,0 +1,622 @@
+body {
+  background-color: #121212;
+  color: #f1f1f1;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+body.light h1 {
+  color: #222;
+}
+
+#malla-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.semestre {
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 8px;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.semestre:not(:first-child) {
+  margin-top: 18px;
+}
+
+.semestre h2 {
+  border-bottom: 1px solid #555;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+.ramo {
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: transform 0.25s cubic-bezier(.4,2,.3,1), background 0.3s, box-shadow 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.ramo:hover {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  z-index: 2;
+}
+
+/* Estados */
+.pendiente { background-color: #444; }
+.encurso { background-color: #c79300; }
+.aprobado { background-color: #2e7d32; }
+.bloqueado {
+  background-color: #333;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Etapas */
+.bachillerato { border-left: 5px solid #007bff; }
+.plancomun { border-left: 5px solid #00c853; }
+.licenciatura { border-left: 5px solid #9c27b0; }
+.especialidad { border-left: 5px solid #f6040492; }
+
+/* Ícono de bloqueo */
+.ramo.bloqueado::after {
+  content: '🔒';
+  margin-left: 8px;
+  font-size: 0.9em;
+}
+
+body.light {
+  background-color: #f4f6fb;
+  color: #222;
+}
+
+body.light .semestre {
+  background-color: #f9fafc;
+  box-shadow: 0 4px 16px rgba(60, 80, 120, 0.10);
+  border: 1.5px solid #e3e8f0;
+}
+
+body.light .ramo.pendiente { background-color: #f1f3f7; }
+body.light .ramo.encurso { background-color: #fff7d6; }
+body.light .ramo.aprobado { background-color: #c8e6c9; }
+body.light .ramo.bloqueado { background-color: #e0e0e0; }
+
+body.light .bachillerato { border-left: 5px solid #4f8cff; }
+body.light .plancomun { border-left: 5px solid #5fd68b; }
+body.light .licenciatura { border-left: 5px solid #c084e6; }
+body.light .especialidad { border-left: 5px solid #ff8a80; }
+
+body.light .semestre.bachillerato { border-top: 4px solid #4f8cff; }
+body.light .semestre.plancomun { border-top: 4px solid #5fd68b; }
+body.light .semestre.licenciatura { border-top: 4px solid #c084e6; }
+body.light .semestre.especialidad { border-top: 4px solid #ff8a80; }
+
+#toggle-theme {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  background: #333;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+body.light #toggle-theme {
+  background: #f1f3f7;
+  color: #222;
+  border: 1px solid #d1d9e6;
+  box-shadow: 0 2px 8px rgba(60,80,120,0.06);
+}
+
+#toggle-theme:hover {
+  background: #555;
+}
+body.light #toggle-theme:hover {
+  background: #e3e8f0;
+}
+
+#progress-bar-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+  background: #232323;
+  border-radius: 8px;
+  height: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+}
+body.light #progress-bar-container {
+  background: #e3e8f0;
+  box-shadow: 0 2px 8px rgba(60,80,120,0.08);
+}
+
+#progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #2e7d32, #00c853 80%);
+  width: 0%;
+  border-radius: 8px 0 0 8px;
+  transition: width 0.5s cubic-bezier(.4,2,.3,1);
+}
+
+#progress-text {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  z-index: 2;
+}
+body.light #progress-text {
+  color: #333;
+}
+
+/* Separación visual entre etapas */
+.semestre {
+  margin-bottom: 8px;
+  border: 2px solid transparent;
+  position: relative;
+}
+.semestre:not(:first-child) {
+  margin-top: 18px;
+}
+.semestre.bachillerato { border-top: 4px solid #007bff; }
+.semestre.plancomun { border-top: 4px solid #00c853; }
+.semestre.licenciatura { border-top: 4px solid #9c27b0; }
+.semestre.especialidad { border-top: 4px solid #f6040492; }
+
+/* Separadores visuales de etapas */
+.etapa-separador {
+  width: 100%;
+  max-width: 1100px;
+  margin: 32px auto 16px auto;
+  border: none;
+  border-top: 3px dashed #888;
+  opacity: 0.45;
+  position: relative;
+}
+body.light .etapa-separador {
+  border-top: 3px dashed #b0b8c9;
+  opacity: 0.6;
+}
+.etapa-label {
+  position: absolute;
+  left: 50%;
+  top: -18px;
+  transform: translateX(-50%);
+  background: #121212;
+  color: #fff;
+  padding: 2px 18px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 1;
+}
+body.light .etapa-label {
+  background: #f4f6fb;
+  color: #222;
+  box-shadow: 0 2px 8px rgba(60,80,120,0.06);
+}
+
+/* Nombres de etapa amigables */
+.etapa-nombre {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 0 auto;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 18px 0 8px 0;
+  color: #4f8cff;
+  background: linear-gradient(90deg, #e3f0ff 0%, #f4f6fb 100%);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 2px 12px rgba(60,80,120,0.07);
+  position: relative;
+  z-index: 2;
+  border-bottom: 2px solid #b0b8c9;
+}
+body.light .etapa-nombre {
+  color: #4f8cff;
+  background: linear-gradient(90deg, #e3f0ff 0%, #f4f6fb 100%);
+  border-bottom: 2px solid #b0b8c9;
+}
+body:not(.light) .etapa-nombre {
+  color: #90caf9;
+  background: linear-gradient(90deg, #232b39 0%, #181c24 100%);
+  border-bottom: 2px solid #333b4d;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.etapa-nombre.plancomun {
+  color: #43a047;
+  background: linear-gradient(90deg, #e6f9ee 0%, #f4f6fb 100%);
+  border-bottom: 2px solid #b0d8c9;
+  /* Si el texto es más largo, permite salto de línea */
+  white-space: pre-line;
+}
+body:not(.light) .etapa-nombre.plancomun {
+  color: #80e27e;
+  background: linear-gradient(90deg, #1b2e23 0%, #181c24 100%);
+  border-bottom: 2px solid #234d33;
+  white-space: pre-line;
+}
+.etapa-nombre.licenciatura {
+  color: #ab47bc;
+  background: linear-gradient(90deg, #f3e6fa 0%, #f4f6fb 100%);
+  border-bottom: 2px solid #d1b8e6;
+}
+body:not(.light) .etapa-nombre.licenciatura {
+  color: #ce93d8;
+  background: linear-gradient(90deg, #2a1b2e 0%, #181c24 100%);
+  border-bottom: 2px solid #3d234d;
+}
+.etapa-nombre.especialidad {
+  color: #ff5252;
+  background: linear-gradient(90deg, #ffeaea 0%, #f4f6fb 100%);
+  border-bottom: 2px solid #ffbdbd;
+}
+body:not(.light) .etapa-nombre.especialidad {
+  color: #ff8a80;
+  background: linear-gradient(90deg, #3a2323 0%, #181c24 100%);
+  border-bottom: 2px solid #4d2323;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+  gap: 8px;
+}
+.tab-btn {
+  background: #232323;
+  color: #fff;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 28px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+}
+.tab-btn.active, .tab-btn:focus {
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+body.light .tab-btn {
+  background: #e3e8f0;
+  color: #222;
+}
+body.light .tab-btn.active, body.light .tab-btn:focus {
+  background: #4f8cff;
+  color: #fff;
+}
+
+/* Calculadora de promedios */
+#calculadora-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 320px;
+}
+.calc-box {
+  background: #181c24;
+  color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+  padding: 28px 32px 24px 32px;
+  min-width: 340px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+body.light .calc-box {
+  background: #f9fafc;
+  color: #222;
+  box-shadow: 0 4px 18px rgba(60,80,120,0.10);
+}
+.calc-box h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 1.3rem;
+  text-align: center;
+}
+#calc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.eval-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.eval-row input[type="text"] {
+  width: 90px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  border: 1px solid #888;
+  font-size: 1rem;
+}
+.eval-row input[type="number"] {
+  width: 60px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  border: 1px solid #888;
+  font-size: 1rem;
+}
+.eval-row button {
+  background: #ff5252;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 2px 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-left: 4px;
+}
+#add-eval {
+  margin-top: 8px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#add-eval:hover {
+  background: #0056b3;
+}
+.calc-result {
+  margin-top: 18px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+body.light .calc-result {
+  color: #222;
+}
+
+/* Promedio de ramo aprobado */
+.ramo-promedio {
+  display: none;
+  margin-left: 8px;
+  width: 60px;
+  font-size: 0.95rem;
+  border-radius: 5px;
+  border: 1px solid #888;
+  padding: 2px 4px;
+  background: inherit;
+  color: inherit;
+}
+.ramo.aprobado .ramo-promedio {
+  display: inline-block;
+}
+
+/* Promedio de ramo aprobado: recuadro al lado derecho */
+.ramo-promedio-box {
+  display: none;
+  align-items: center;
+  margin-left: 10px;
+  background: #232b39;
+  border-radius: 6px;
+  padding: 2px 8px;
+  border: 1px solid #3a4a5a;
+  min-width: 80px;
+  height: 28px;
+  transition: background 0.2s, border 0.2s;
+}
+body.light .ramo-promedio-box {
+  background: #e3f0ff;
+  border: 1px solid #b0b8c9;
+}
+.ramo.aprobado .ramo-promedio-box {
+  display: flex;
+}
+.ramo-promedio-label {
+  font-size: 0.93rem;
+  margin-right: 4px;
+  color: #90caf9;
+}
+body.light .ramo-promedio-label {
+  color: #1976d2;
+}
+.ramo-promedio {
+  width: 48px;
+  font-size: 0.95rem;
+  border-radius: 5px;
+  border: 1px solid #888;
+  padding: 2px 4px;
+  background: inherit;
+  color: inherit;
+  text-align: center;
+}
+
+/* --- Estilos para el Calendario --- */
+#calendario-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1e1e1e;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+}
+
+#calendar-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#calendar-header h2 {
+  margin-top: 0;
+  color: #f1f1f1;
+}
+
+#calendar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+#calendar-nav button, #calendar-nav select {
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#calendar-nav button:hover {
+  background: #555;
+}
+
+#calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day {
+  background: #2c2c2c;
+  min-height: 120px;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-day:hover {
+  background: #3a3a3a;
+}
+
+.day-header {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-header.weekday {
+  min-height: auto;
+  text-align: center;
+  justify-content: center;
+  background: #121212;
+  font-size: 1rem;
+}
+
+.day-number {
+  color: #f1f1f1;
+}
+
+.day-header.other-month .day-number {
+  color: #666;
+}
+
+.day-header.today .day-number {
+  background-color: #007bff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.day-events {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.event-item {
+  background-color: #007bff;
+  color: white;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  word-wrap: break-word;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-event {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 4px;
+  opacity: 0.6;
+}
+
+.delete-event:hover {
+  opacity: 1;
+}
+
+/* --- Modo Claro para el Calendario --- */
+body.light #calendario-container {
+  background-color: #f9fafc;
+  box-shadow: 0 4px 18px rgba(60,80,120,0.10);
+}
+body.light #calendar-header h2 {
+  color: #222;
+}
+body.light #calendar-nav button, body.light #calendar-nav select {
+  background: #e3e8f0;
+  color: #222;
+  border: 1px solid #d1d9e6;
+}
+body.light #calendar-nav button:hover {
+  background: #d1d9e6;
+}
+body.light .calendar-day {
+  background: #f1f3f7;
+}
+body.light .calendar-day:hover {
+  background: #e3e8f0;
+}
+body.light .day-number {
+  color: #222;
+}
+body.light .day-header.other-month .day-number {
+  color: #aaa;
+}
+body.light .event-item {
+  background-color: #4f8cff;
+}
