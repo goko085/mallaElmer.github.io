@@ -33,9 +33,9 @@ const malla = [
     etapa: "plancomun",
     ramos: [
       { nombre: "Desafíos de Innovación en Ingeniería y Ciencias" },
-      { nombre: "Álgebra" },
+      { nombre: "Álgebra", requisitos: ["Matemáticas 2"] },
       { nombre: "Física 1", requisitos: ["Matemáticas 1"] },
-      { nombre: "Cálculo 1" },
+      { nombre: "Cálculo 1", requisitos: ["Matemáticas 2"] },
       { nombre: "Herramientas Computacionales" }
     ]
   },
