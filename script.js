@@ -66,6 +66,7 @@ const malla = [
     etapa: "plancomun",
     ramos: [
       { nombre: "Cálculo Avanzado y Aplicaciones", requisitos: ["Cálculo en Varias Variables", "Ecuaciones Diferenciales Ordinarias"] },
+      { nombre: "Economía (Convalidada)", requisitos: ["Economía"] },
       { nombre: "Electromagnetismo", requisitos: ["Cálculo en Varias Variables", "Ecuaciones Diferenciales Ordinarias", "Mecánica"] },
       { nombre: "Termodinámica", requisitos: ["Mecánica", "Química (Convalidada)", "Cálculo en Varias Variables"] },
       { nombre: "Módulo Interdisciplinario", requisitos: ["Proyectos de innovación en ingeniería y ciencias", "Métodos Experimentales"] },
@@ -80,8 +81,8 @@ const malla = [
       { nombre: "Modelación y Computación Gráfica", requisitos: ["Introducción a la programación", "Cálculo en Varias Variables", "Ecuaciones Diferenciales Ordinarias", "Mecánica"] },
       { nombre: "Algoritmos y Estructuras de Datos", requisitos: ["Introducción a la programación"] },
       { nombre: "Matemáticas Discretas", requisitos: ["Introducción a la programación", "Álgebra"] },
-      { nombre: "Inglés para Computación" },
-      { nombre: "Filosofía (convalidada)", requisitos: ["Filosofía"] }
+      { nombre: "Inglés para Programadores" },
+      { nombre: "Filosofía (Convalidada)", requisitos: ["Filosofía"] }
     ]
   },
   {
@@ -92,7 +93,7 @@ const malla = [
       { nombre: "Metodologías de Diseño y Programación", requisitos: ["Algoritmos y Estructuras de Datos"] },
       { nombre: "Teoría de la Computación", requisitos: ["Matemáticas Discretas"] },
       { nombre: "Programación de Software de Sistemas", requisitos: ["Algoritmos y Estructuras de Datos"] },
-      { nombre: "Programación Competitiva" },
+      { nombre: "Programación Competitiva", requisitos: ["Herramientas Computacionales"] },
       { nombre: "Taller de Práctica Profesional 1" }
     ]
   },
@@ -104,7 +105,7 @@ const malla = [
       { nombre: "Ingeniería de Software", requisitos: ["Metodologías de Diseño y Programación", "Bases de Datos"] },
       { nombre: "Diseño y Análisis de Algoritmos", requisitos: ["Métodos Experimentales", "Teoría de la Computación"] },
       { nombre: "Sistemas Operativos", requisitos: ["Programación de Software de Sistemas"] },
-      { nombre: "Hacking Competitivo" },
+      { nombre: "Hacking Competitivo", requisitos: ["Algoritmos y Estructuras de Datos"] },
       { nombre: "Práctica Profesional 1", requisitos: ["Taller de Práctica Profesional 1"] }
     ]
   },
@@ -115,10 +116,42 @@ const malla = [
       { nombre: "Formulación y Gestión de Proyectos", requisitos: ["Ingeniería de Software", "Economía", "Módulo Interdisciplinario"] },
       { nombre: "Lenguajes de Programación", requisitos: ["Teoría de la Computación"] },
       { nombre: "Redes", requisitos: ["Sistemas Operativos"] },
-      { nombre: "Administración de Sistemas Linux" },
-      { nombre: "Introducción a la Criptografía Moderna" },
+      { nombre: "Administración de Sistemas Linux", requisitos: ["Programación de Software de Sistemas", "Sistemas Operativos"] },
+      { nombre: "Introducción a la Criptografía Moderna", requisitos: ["Algoritmos y Estructuras de Datos", "Teoría de la Computación", "Probabilidades y Estadística"] },
       { nombre: "Examen de Suficiencia en Inglés 1" },
       { nombre: "Taller de Práctica Profesional 2", requisitos: ["Práctica Profesional 1"] }
+    ]
+  },
+  {
+    semestre: "11vo Semestre",
+    etapa: "especialidad",
+    ramos: [
+      { nombre: "Seguridad de Datos", requisitos: ["Sistemas Operativos", "Bases de Datos"] },
+      { nombre: "Introducción a la Seguridad Computacional", requisitos: ["Sistemas Operativos"] },
+      { nombre: "Recuperación de Información Multimedia", requisitos: ["Algoritmos y Estructuras de Datos"] },
+      { nombre: "Gestión estratégica de proyectos: métodos avanzados e innovación" },
+      { nombre: "Ética para Ingenieros en Computación" },
+      { nombre: "Taller de Comunicación Efectiva" },
+      { nombre: "Práctica Profesional 2", requisitos: ["Taller de Práctica Profesional 2"] }
+    ]
+  },
+  {
+    semestre: "12vo Semestre",
+    etapa: "especialidad",
+    ramos: [
+      { nombre: "Introducción al Trabajo de Título", requisitos: ["Formulación y Gestión de Proyectos"] },
+      { nombre: "Arquitectura de Sistemas de Alta Disponibilidad", requisitos: ["Sistemas Operativos", "Bases de Datos"] },
+      { nombre: "Análisis y Verificación de Programas", requisitos: ["Lenguajes de Programación"] },
+      { nombre: "Proyecto de Software", requisitos: ["Minería de Datos", "Formulación y Gestión de Proyectos"] }
+    ]
+  },
+  {
+    semestre: "13vo Semestre",
+    etapa: "especialidad",
+    ramos: [
+      { nombre: "Trabajo de Título", requisitos: ["Introducción al Trabajo de Título"] },
+      { nombre: "Introducción al Derecho Informático", requisitos: ["Práctica Profesional 1"] },
+      { nombre: "Examen de Suficiencia en Inglés 2", requisitos: ["Examen de Suficiencia en Inglés 1"] }
     ]
   }
 ];

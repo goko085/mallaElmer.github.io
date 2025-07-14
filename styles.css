@@ -63,6 +63,7 @@ h1 {
 .bachillerato { border-left: 5px solid #007bff; }
 .plancomun { border-left: 5px solid #00c853; }
 .licenciatura { border-left: 5px solid #9c27b0; }
+.especialidad { border-left: 5px solid #f6040492; }
 
 /* Ícono de bloqueo */
 .ramo.bloqueado::after {
